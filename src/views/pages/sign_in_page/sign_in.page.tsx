@@ -1,8 +1,16 @@
 import {Background, SignInForm} from "./index";
 import {Link} from "@mui/material";
+import {useSelector} from "react-redux";
+import {RootStateType} from "../../../stores";
 
 function SignInPage()
 {
+   const auth = useSelector((state: RootStateType) => state.auth.data)
+
+   if (auth) {
+      window.location.replace("/dashboard");
+   }
+
    return (
       <div className={sty.cln}>
 

@@ -1,4 +1,4 @@
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 import {RootLayout} from "../views";
 import {roles} from "../constants";
 import {lazy} from "react"
@@ -19,33 +19,25 @@ function RootRouter()
       <BrowserRouter>
          <Routes>
             <Route element={<RootLayout/>}>
-
                <Route path={""} element={<SignInPage/>}/>
 
-               {
-                  role === roles.planner
-                     ? <Route path={"dashboard"} element={<PlannerDashboardPage/>}/>
-                     : null
-               }
+               {role === roles.planner && (
+                  <Route path={"dashboard"} element={<PlannerDashboardPage/>}/>
+               )}
 
-               {
-                  role === roles.supplier
-                     ? <Route path={"dashboard"} element={<SupplierDashboardPage/>}/>
-                     : null
-               }
+               {role === roles.supplier && (
+                  <Route path={"dashboard"} element={<SupplierDashboardPage/>}/>
+               )}
 
-               {
-                  role === roles.contractor
-                     ? <Route path={"dashboard"} element={<ContractorDashboardPage/>}/>
-                     : null
-               }
+               {role === roles.contractor && (
+                  <Route path={"dashboard"} element={<ContractorDashboardPage/>}/>
+               )}
 
-               {
-                  role === roles.admin
-                     ? <Route path={"dashboard"} element={<AdminDashboardPage/>}/>
-                     : null
-               }
+               {role === roles.admin && (
+                  <Route path={"dashboard"} element={<AdminDashboardPage/>}/>
+               )}
 
+               {!role && <Route path="*" element={<Navigate to="/" replace />} />}
             </Route>
          </Routes>
       </BrowserRouter>

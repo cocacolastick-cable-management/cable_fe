@@ -21,7 +21,7 @@ function NotificationSection()
    const [eventSource, setEventSource] = useState<EventSource>()
 
    useEffect(() => {
-      const newEventSource = new EventSource(`http://localhost:8080/sse/notifications?access_token=${accessToken}`);
+      const newEventSource = new EventSource(`api/sse/notifications?access_token=${accessToken}`);
       setEventSource(newEventSource);
       return () => {
          newEventSource.close();
